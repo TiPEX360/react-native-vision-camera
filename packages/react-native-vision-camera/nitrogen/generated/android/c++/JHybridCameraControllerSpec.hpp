@@ -57,6 +57,7 @@ namespace margelo::nitro::camera {
     bool getIsLowLightBoostEnabled() override;
     bool getIsSmoothAutoFocusEnabled() override;
     bool getIsDistortionCorrectionEnabled() override;
+    bool getSupportsDngCapture() override;
     double getZoom() override;
     double getMinZoom() override;
     double getMaxZoom() override;

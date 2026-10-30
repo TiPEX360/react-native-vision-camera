@@ -57,6 +57,10 @@ abstract class HybridCameraControllerSpec: HybridObject() {
   
   @get:DoNotStrip
   @get:Keep
+  abstract val supportsDngCapture: Boolean
+  
+  @get:DoNotStrip
+  @get:Keep
   abstract val zoom: Double
   
   @get:DoNotStrip

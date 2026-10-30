@@ -143,6 +143,11 @@ namespace margelo::nitro::camera {
     auto __result = method(_javaPart);
     return static_cast<bool>(__result);
   }
+  bool JHybridCameraControllerSpec::getSupportsDngCapture() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jboolean()>("getSupportsDngCapture");
+    auto __result = method(_javaPart);
+    return static_cast<bool>(__result);
+  }
   double JHybridCameraControllerSpec::getZoom() {
     static const auto method = _javaPart->javaClassStatic()->getMethod<double()>("getZoom");
     auto __result = method(_javaPart);

@@ -108,7 +108,12 @@ final class HybridCameraSession: HybridCameraSessionSpec {
 
       // Return CameraControllers per connection to adjust camera settings (focus, etc)
       return try connections.map { connection in
-        return try HybridCameraController(device: connection.input, queue: Self.queue)
+        let photoOutputs = connection.outputs.compactMap { outputConfiguration -> AVCapturePhotoOutput? in
+          guard case .output(let output) = outputConfiguration.output else { return nil }
+          return output.output as? AVCapturePhotoOutput
+        }
+        return try HybridCameraController(
+          device: connection.input, queue: Self.queue, photoOutputs: photoOutputs)
       }
     }
   }

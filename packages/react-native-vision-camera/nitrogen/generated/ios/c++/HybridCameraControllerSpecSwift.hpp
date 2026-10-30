@@ -131,6 +131,9 @@ namespace margelo::nitro::camera {
     inline bool getIsDistortionCorrectionEnabled() noexcept override {
       return _swiftPart.isDistortionCorrectionEnabled();
     }
+    inline bool getSupportsDngCapture() noexcept override {
+      return _swiftPart.getSupportsDngCapture();
+    }
     inline double getZoom() noexcept override {
       return _swiftPart.getZoom();
     }

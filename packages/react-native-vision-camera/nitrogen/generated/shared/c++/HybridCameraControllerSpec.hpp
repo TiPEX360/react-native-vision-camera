@@ -85,6 +85,7 @@ namespace margelo::nitro::camera {
       virtual bool getIsLowLightBoostEnabled() = 0;
       virtual bool getIsSmoothAutoFocusEnabled() = 0;
       virtual bool getIsDistortionCorrectionEnabled() = 0;
+      virtual bool getSupportsDngCapture() = 0;
       virtual double getZoom() = 0;
       virtual double getMinZoom() = 0;
       virtual double getMaxZoom() = 0;

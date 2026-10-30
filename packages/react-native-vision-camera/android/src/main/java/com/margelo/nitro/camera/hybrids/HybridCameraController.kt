@@ -5,7 +5,7 @@ import android.animation.ValueAnimator
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraState
 import androidx.camera.core.FocusMeteringAction
-import androidx.camera.core.LowLightBoostState
+import androidx.camera.core.ImageCaptureimport androidx.camera.core.LowLightBoostState
 import androidx.camera.core.MeteringPoint
 import androidx.camera.core.TorchState
 import com.google.common.util.concurrent.ListenableFuture
@@ -50,6 +50,12 @@ class HybridCameraController(
 
   override val isUsedByAnotherApp: Boolean
     get() = cameraState?.error?.code == CameraState.ERROR_CAMERA_IN_USE
+
+  override val supportsDngCapture: Boolean
+    get() =
+      ImageCapture.getImageCaptureCapabilities(camera.cameraInfo).supportedOutputFormats.let {
+        it.contains(ImageCapture.OUTPUT_FORMAT_RAW) || it.contains(ImageCapture.OUTPUT_FORMAT_RAW_JPEG)
+      }
 
   override val zoom: Double
     get() =

@@ -17,6 +17,7 @@ public protocol HybridCameraControllerSpec_protocol: HybridObject {
   var isLowLightBoostEnabled: Bool { get }
   var isSmoothAutoFocusEnabled: Bool { get }
   var isDistortionCorrectionEnabled: Bool { get }
+  var supportsDngCapture: Bool { get }
   var zoom: Double { get }
   var minZoom: Double { get }
   var maxZoom: Double { get }

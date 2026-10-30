@@ -173,6 +173,13 @@ open class HybridCameraControllerSpec_cxx {
     }
   }
   
+  public final var supportsDngCapture: Bool {
+    @inline(__always)
+    get {
+      return self.__implementation.supportsDngCapture
+    }
+  }
+  
   public final var zoom: Double {
     @inline(__always)
     get {

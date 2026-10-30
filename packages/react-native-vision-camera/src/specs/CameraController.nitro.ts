@@ -194,7 +194,14 @@ export interface CameraController
    * {@linkcode CameraDevice.supportsDistortionCorrection}).
    */
   readonly isDistortionCorrectionEnabled: boolean
-
+  /**
+   * Gets whether the currently configured {@linkcode CameraPhotoOutput}(s)
+   * connected to this {@linkcode CameraController}'s {@linkcode CameraDevice}
+   * can capture RAW photos in the DNG format (including Apple ProRAW on iOS).
+   *
+   * Returns `false` if no photo output is connected.
+   */
+  readonly supportsDngCapture: boolean
   // pragma MARK: Configure
   /**
    * Configures this {@linkcode CameraController} with the

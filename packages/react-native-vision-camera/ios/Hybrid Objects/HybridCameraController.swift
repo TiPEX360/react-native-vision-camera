@@ -13,13 +13,34 @@ final class HybridCameraController: HybridCameraControllerSpec, NativeCameraCont
   let queue: DispatchQueue
   let captureDevice: AVCaptureDevice
   private var activeMeteringTask: MeteringTask? = nil
+  private let photoOutputs: [AVCapturePhotoOutput]
 
-  init(device: any HybridCameraDeviceSpec & NativeCameraDevice, queue: DispatchQueue) throws {
+  init(
+    device: any HybridCameraDeviceSpec & NativeCameraDevice,
+    queue: DispatchQueue,
+    photoOutputs: [AVCapturePhotoOutput]
+  ) throws {
     self.device = device
     self.captureDevice = device.device
+    self.photoOutputs = photoOutputs
 
     // TODO: Is it best practice to use the same `queue` as our HybridCameraSession?
     self.queue = queue
+  }
+
+  var supportsDngCapture: Bool {
+    return photoOutputs.contains { output in
+      // RAW formats are only reported for outputs that are connected to this device
+      let isConnectedToDevice = output.connections.contains { connection in
+        connection.inputPorts.contains { port in
+          (port.input as? AVCaptureDeviceInput)?.device == captureDevice
+        }
+      }
+      guard isConnectedToDevice else {
+        return false
+      }
+      return !output.availableRawPhotoPixelFormatTypes.isEmpty || output.isAppleProRAWSupported
+    }
   }
 
   var isConnected: Bool {
